@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="card">
+            <h1>Confirm Booking</h1>
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            {% if success %}
+                <p style="color: green;">{{ success }}</p>
+                <p><strong>Desk:</strong> {{ desk_number }}</p>
+                <p><strong>Date:</strong> {{ date }}</p>
+                <p><strong>Time Slot:</strong> {{ time_slot }}</p>
+            {% else %}
+                <p><strong>Desk:</strong> {{ desk_number }}</p>
+                <p><strong>Date:</strong> {{ date }}</p>
+                <p><strong>Time Slot:</strong> {{ time_slot }}</p>
+                <form action="/book/{{ desk_id }}" method="POST">
+                    <input type="hidden" name="date" value="{{ date }}">
+                    <input type="hidden" name="time_slot" value="{{ time_slot }}">
+                    <button>Confirm Booking</button>
+                </form>
+            {% endif %}
+            <a href="/desks">Back to Desks</a>
+        </div>
+{% endblock %}

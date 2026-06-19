@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title> 
+        <link rel="stylesheet" href="/static/style.css">   
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container"> 
+            <nav>             
+                <img src="/static/logo.png" alt="Northumbria University" style="width: 199px; margin-bottom: 0px;">
+                {% if user %}
+                <div style="color: white; padding: 8px 10px; font-size: 14px; border-bottom: 1px solid #333; margin-bottom: 10px;">
+                    Welcome, {{ user.name }}!
+                </div>
+                {% endif %}
+                <a href="/desks">Available Desks</a>
+                <a href="/mybookings">My bookings</a>
+                <a href="/account">Account</a>
+                <a href="/logout">Logout</a>    
+            </nav>
+            <div class="content"> 
+            {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="flash-message">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                {% block content %}{% endblock %}    
+            </div>
+        </div>
+        <script>
+
+            const flashes = document.querySelectorAll('.flash-message');
+            flashes.forEach(function(flash) {
+                setTimeout(function() {
+                    flash.style.display = 'none';
+                }, 3000);
+            });        
+        </script>       
+    </body>
+</html>

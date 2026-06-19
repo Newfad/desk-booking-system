@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>Account</h1>
+        <p><strong>Username:</strong> {{account["username"]}}</p>
+        <p><strong>Email:</strong> {{user["email"]}}</p>
+        <p><strong>Department:</strong> {{user["department"]}}</p>
+        <p><strong>Role:</strong> {{user["role"]}}</p>
+
+<a href="/password_reset">Reset Password</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card">
+        <h1>Edit user</h1>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <form action="/admin/edit_user/{{ edit_user["id"] }}" method="POST"> 
+            <label for="username">Username </label>
+            <input type="text" name='username' value="{{edit_user["username"]}}">
+            <label for="email">Email</label>
+            <input type="email" name="email" value="{{edit_user["email"]}}">
+            <label for="password">Password</label>
+            <input type="password" name="password" value="">
+            <label for="department">Department</label>
+            <select name ="department">                
+                <option value="IT" {% if edit_user["department"] == 'IT' %}selected{% endif %}>IT</option>
+                <option value="HR" {% if edit_user["department"] == 'HR' %}selected{% endif %}>HR</option>
+                <option value="Finance" {% if edit_user["department"] == 'Finance' %}selected{% endif %}>Finance</option>
+            </select>
+            <button>save changes</button>
+        </form>
+        <a href="/admin">Back to admin</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="card">
+            <h1>My Bookings</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Desk</th>
+                        <th>Date</th>
+                        <th>Time Slot</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking["desk_number"] }}</td>
+                        <td>{{ booking["date"] }}</td>
+                        <td>{{ booking["time_slot"] }}</td>
+                        <td>{{ booking["status"] }}</td>
+                        <td>
+                            <a href="/cancel/{{ booking["id"] }}" 
+                            class="cancel-btn" 
+                            onclick="return confirm ('Are you sure you want to cancel this booking?')">cancel</a>
+                        <td><a href="/edit_bookings/{{ booking["id"] }}" class="edit-btn">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+{% endblock %}

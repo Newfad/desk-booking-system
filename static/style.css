@@ -1,0 +1,223 @@
+body {
+    background-image: url(/static/Northumbria.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+nav {
+    width: 200px;
+    background-color: black;
+    padding: 20px;
+}
+
+nav a {
+    display: block;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background-color: #036ea7;
+}
+
+.content {
+    flex: 1;
+}
+
+h1 {
+    color: black;
+}
+
+p { 
+    color: black;
+}
+
+a {
+    color: black;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    width: 1200px;
+    margin: 50px auto;
+    border-radius: 10px;
+        
+}
+
+.card a {
+    background-color:#036ea7;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    color: white;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;    
+}
+
+.desk-card {
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 30px;
+    width: 300px;
+    margin: 50px auto;
+    border-radius: 10px;
+    color: black;
+}
+
+.card a.edit-btn {
+    background-color: #036ea7;
+    color: white;
+}
+
+.card a.cancel-btn {
+    background-color: #c6670d;
+    color: white;
+}
+
+th, td {
+    padding: 10px 15px;
+    text-align: left;
+}
+
+.badge-available {
+    background-color: #28a745;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 10px;
+}
+
+.badge-booked {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 10px;
+}
+
+.badge-available, .badge-booked {
+    display: inline-block;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.book-btn {
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    width: auto;
+}
+
+.card a.book-btn {
+    display: inline-block;
+    width: auto;
+    padding: 4px 10px;
+    margin-top: 5px;
+    border-radius: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border-bottom: 1px solid #ddd;
+}
+
+input[type="date"] {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: black;
+    margin-bottom: 15px;
+}
+
+input[type="date"] {
+    padding: 8px 12px;
+    border: 2px solid #036ea7;
+    border-radius: 5px;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+}
+
+input[type="date"]:focus {
+    outline: none;
+    border-color: #036ea7;
+    box-shadow: 0 0 5px rgba(3, 110, 167, 0.3);
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+input[type="email"], input[type="password"], input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #036ea7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.login-container .card {
+    width: 350px;
+}
+
+.register-link {
+    background-color: transparent !important;
+    color: #036ea7 !important;
+    text-align: center;
+    font-size: 14px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.flash-message {
+    background-color: #036ea7;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}

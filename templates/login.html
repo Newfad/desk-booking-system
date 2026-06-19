@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <div class="login-container">
+            <div class="card">
+              
+                <h1>Login</h1>
+                <form action="/login" method="POST">
+                    <label for="email">Email</label>
+                    <input type="email" name="email">
+                    <label for="password">Password</label>
+                    <input type="password" name="password">
+                    <a href="/password_reset" class="register-link">Forgot password?</a>
+                    {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                    {% endif %}
+                    <button>Submit</button>
+                    <a href="/register" class="register-link">Don't have an account? Register</a>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

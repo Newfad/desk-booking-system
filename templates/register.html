@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <div class="login-container">
+            <div class="card">
+        <h1>Register</h1> 
+		<form action="/register" method="POST">
+            <label for="username">Username</label>
+			<input type="text" name="username" value="{{ username or '' }}">
+            <label for="full_name">Full name</label>
+            <input type="text" name="full_name" value="{{ full_name or '' }}">
+            <label for="department">Department</label>
+			<select name="department">
+				<option value="">Select department</option>
+				<option value="HR">HR</option>
+				<option value="Finance">Finance</option>
+                <option value="IT">IT</option>
+			</select>
+			<label for="email">Email</label>
+			<input type="email" name="email" value="{{ email or '' }}">
+			<label for="password">Password</label>
+			<input type="password" name="password">
+			{% if error %}	
+						<p style="color: red;">{{ error }}</p>
+			{% endif %}
+			<button>submit</button>
+            <a href="/login" class="register-link">Already have an account? Login</a>
+        </form>
+        </div>
+            </div>
+        </div>
+    </body>
+</html>

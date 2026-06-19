@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="card">
+            <h1>Add New Desk</h1>
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            <form action="/admin/add_desk" method="POST">
+                <label for="desk_number">Desk Number</label>
+                <input type="text" name="desk_number">
+                <label for="department">Department</label>
+                <select name="department">
+                    <option value="IT">IT</option>
+                    <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                </select>
+                <label for="floor">Floor</label>
+                <input type="number" name="floor">
+                <button>Add Desk</button>
+            </form>
+            <a href="/admin">Back to Admin</a>
+        </div>
+{% endblock %}

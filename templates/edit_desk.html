@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="card">
+            
+            <h1>Edit desk</h1>
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            <form action="/admin/edit_desk/{{ desk["id"] }}" method="POST">
+            <label for="desk_number">Desk Number </label>
+            <input type="text" name='desk_number' value="{{desk["desk_number"]}}">
+            <label for="department">Department</label>
+            <select name="department">
+                <option value="IT" {% if desk["department"] == 'IT' %}selected{% endif %}>IT</option>
+                <option value="HR" {% if desk["department"] == 'HR' %}selected{% endif %}>HR</option>
+                <option value="Finance" {% if desk["department"] == 'Finance' %}selected{% endif %}>Finance</option>
+            </select>
+            <label for="floor">Floor</label>
+            <select name="floor">
+                <option value="1"  {% if desk["floor"] == '1' %}selected{% endif %}>Floor 1</option>
+                <option value="2"  {% if desk["floor"] == '2' %}selected{% endif %}>Floor 2</option>
+                <option value="3"  {% if desk["floor"] == '3' %}selected{% endif %}>Floor 3</option>
+            </select>
+            <button>save changes</button>
+            </form>
+            <a href="/admin">Back to admin</a>
+    
+        </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card">
+    <h1>Available Desks</h1>
+    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 15px;">
+        <label for="date-picker" style="font-weight: bold; font-size: 16px;">Select Date:</label>
+        <input type="date" id="date-picker" value="{{ date }}">
+    </div>
+   
+    <table>
+    <thead>
+        <tr>
+            <th>Desk</th>
+            <th>Department</th>
+            <th>Floor</th>
+            <th>AM (08:00 - 12:00)</th>
+            <th>PM (13:00 - 17:00)</th>
+            <th>Full Day (08:00 - 17:00)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for desk in desks %}
+        <tr>
+            <td>{{ desk["desk_number"] }}</td>
+            <td>{{ desk["department"] }}</td>
+            <td>{{ desk["floor"] }}</td>
+            <td>
+                {% if (desk["id"], 'Morning') in booked %}
+                    <span class="badge-booked">Booked</span>
+                {% else %}
+                    <span class="badge-available">Available</span>
+                    <a href="/book/{{ desk["id"] }}?date={{ date }}&time_slot=Morning" class="book-btn">Book</a>
+                {% endif %}
+            </td>
+                        <td>
+                {% if (desk["id"], 'Afternoon') in booked %}
+                    <span class="badge-booked">Booked</span>
+                {% else %}
+                    <span class="badge-available">Available</span>
+                    <a href="/book/{{ desk["id"] }}?date={{ date }}&time_slot=Afternoon" class="book-btn">Book</a>
+                {% endif %}
+            </td>
+                        <td>
+                {% if (desk["id"], 'Fullday') in booked %}
+                    <span class="badge-booked">Booked</span>
+                {% else %}
+                    <span class="badge-available">Available</span>
+                    <a href="/book/{{ desk["id"] }}?date={{ date }}&time_slot=Fullday" class="book-btn">Book</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+    document.getElementById('date-picker').addEventListener('change', function() {
+        window.location.href = '/desks?date=' + this.value;
+    });
+</script>
+    </div>
+{% endblock %}

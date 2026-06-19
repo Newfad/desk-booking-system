@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>Edit Booking</h1>
+
+    <p><strong>Current Desk:</strong> {{ booking['desk_number'] }}</p>
+    <p><strong>Current Date:</strong> {{ booking["date"] }}</p>
+    <p><strong>Current Slot:</strong> {{ booking["time_slot"] }}</p>
+
+    <div style="display: flex; align-items: baseline; gap: 10px; margin: 15px;">
+        <label for="date-picker"><strong>Select Date:</strong></label>
+        <input type="date" id="date-picker" value="{{ date }}">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Desk</th>
+                <th>AM (08:00 - 12:00)</th>
+                <th>PM (13:00 - 17:00)</th>
+                <th>Full Day (08:00 - 17:00)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for desk in desks %}
+            <tr>
+                <td>{{ desk["desk_number"] }}</td>
+                <td>
+                    {% if (desk["id"], 'Morning') in booked %}
+                        <span class="badge-booked">Booked</span>
+                    {% else %}
+                        <span class="badge-available">Available</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (desk["id"], 'Afternoon') in booked %}
+                        <span class="badge-booked">Booked</span>
+                    {% else %}
+                        <span class="badge-available">Available</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (desk["id"], 'Fullday') in booked %}
+                        <span class="badge-booked">Booked</span>
+                    {% else %}
+                        <span class="badge-available">Available</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (desk["id"], 'Morning') not in booked %}
+                        <a href="/rebook/{{ booking["id"] }}/{{ desk["id"] }}/Morning/{{ date }}" class="book-btn">Book AM</a>
+                    {% endif %}
+                    {% if (desk["id"], 'Afternoon') not in booked %}
+                        <a href="/rebook/{{ booking["id"] }}/{{ desk["id"] }}/Afternoon/{{ date }}" class="book-btn">Book PM</a>
+                    {% endif %}
+                    {% if (desk["id"], 'Fullday') not in booked %}
+                        <a href="/rebook/{{ booking["id"] }}/{{ desk["id"] }}/Fullday/{{ date }}" class="book-btn">Book Full Day</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById('date-picker').addEventListener('change', function() {
+            window.location.href = '/edit_bookings/{{ booking["id"] }}?date=' + this.value;
+        });
+    </script>
+
+    <a href="/mybookings">Back to my Bookings</a>
+</div>
+{% endblock %}
