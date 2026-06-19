@@ -49,7 +49,8 @@ def init_db():
     conn.close()
 
 def seed_db(): 
-
+    # NOTE: Hardcoded password for testing/seed data only.
+    # In production, passwords would never be hardcoded in source code.
     hashed = generate_password_hash("Password123")
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
