@@ -287,7 +287,7 @@ def edit_bookings(booking_id):
         db.execute("UPDATE bookings SET date=?, time_slot=?, desk_id=? WHERE id = ? AND user_id = ?", 
                        (date, time_slot, desk, booking_id, session['user_id']))
         db.commit()
-
+        flash ("Booking updated successfully")
         return redirect (url_for ('my_bookings'))
     # GETS the infomation if the data is not in present in the datbase
     else: 
@@ -318,7 +318,7 @@ def edit_bookings(booking_id):
             if (desk["id"], 'Morning') in booked and (desk["id"], 'Afternoon') in booked:
                 extra.add((desk["id"], 'Fullday'))
         booked.update(extra)
-        flash ("Booking updated successfully")
+
         return render_template("edit_bookings.html", booking=booking, desks=desks, booked=booked, date=selected_date)
 
 
@@ -334,6 +334,7 @@ def rebook(booking_id, desk_id, time_slot, date):
         VALUES (?, ?, ?, ?, ?)''', 
         (session['user_id'], desk_id, date, time_slot, 'confirmed'))
     db.commit()
+    flash("Booking updated successfully")
     return redirect(url_for('my_bookings'))
 
 @app.route("/book/<int:desk_id>", methods=["GET", "POST"])
@@ -386,7 +387,7 @@ def cancel(booking_id):
     db.execute("UPDATE desks SET status = 'Available' WHERE id = ?", 
                    (desk_id,) )
     db.commit()
-
+    flash("Booking cancelled successfully")
     return redirect(url_for("my_bookings"))
 
 @app.route("/admin/delete_desk/<int:desk_id>")
