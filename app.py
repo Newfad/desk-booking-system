@@ -86,6 +86,7 @@ def register():
         db.execute('''INSERT INTO users (username, full_name, email, password, role, department)
         VALUES (?, ?, ?, ?, ?, ?)''',  (username, full_name, email, hash, 'staff', department))
         db.commit()
+        flash("Account created successfully. Please log in")
         return redirect(url_for('login'))
                                 
     else: 
