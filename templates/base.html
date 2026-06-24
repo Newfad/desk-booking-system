@@ -14,10 +14,15 @@
                     Welcome, {{ user.name }}!
                 </div>
                 {% endif %}
-                <a href="/desks">Available Desks</a>
-                <a href="/mybookings">My bookings</a>
-                <a href="/account">Account</a>
-                <a href="/logout">Logout</a>    
+                {% if session['role'] == 'admin' %}
+                    <a href="/admin">Admin Portal</a>
+                    <a href="/logout">Logout</a>
+                {% else %} 
+                    <a href="/desks">Available Desks</a>
+                    <a href="/mybookings">My bookings</a>
+                    <a href="/account">Account</a>
+                    <a href="/logout">Logout</a>    
+                {% endif %}                
             </nav>
             <div class="content"> 
             {% with messages = get_flashed_messages() %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>Add New User</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form action="/admin/add_user" method="POST">
+        <label>Username</label>
+        <input type="text" name="username">
+        <label>Full Name</label>
+        <input type="text" name="full_name">
+        <label>Email</label>
+        <input type="email" name="email">
+        <label>Department</label>
+        <select name="department">
+            <option value="IT">IT</option>
+            <option value="HR">HR</option>
+            <option value="Finance">Finance</option>
+        </select>
+        <label>Role</label>
+        <select name="role">
+            <option value="staff">Staff</option>
+            <option value="admin">Admin</option>
+        </select>
+        <label>Password</label>
+        <input type="password" name="password">
+        <button>Add User</button>
+    </form>
+    <a href="/admin">Back to Admin</a>
+</div>
+{% endblock %}

@@ -450,6 +450,15 @@ def admin_add_desk():
         desk_number = request.form['desk_number']
         department = request.form['department']
         floor = request.form ['floor']
+
+        if not desk_number or not floor: 
+            return render_template ('add_desk.html', error ="All fields are required")
+
+        existing = db.execute ('SELECT * FROM desks WHERE desk_number = ?',
+                               (desk_number,)).fetchone()
+        if existing:
+            return render_template ('add_desk.html', error="A desk with that number already exists")
+        
        
         db.execute('''INSERT INTO desks (desk_number, department, status,  floor)
         VALUES (?,?,?,?)''', (desk_number, department, 'Available',  floor))
@@ -459,6 +468,38 @@ def admin_add_desk():
 
     else:
         return render_template ("add_desk.html")
+    
+@app.route("/admin/add_user", methods=["GET", "POST"])
+def admin_add_user():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    if session['role'] != 'admin':
+        return redirect(url_for('login'))
+    db = get_db()
+    if request.method == "POST":
+        username = request.form['username']
+        full_name = request.form['full_name']
+        email = request.form['email']
+        department = request.form['department']
+        password = request.form['password']
+        role = request.form['role']
+
+        if not username or not full_name or not email or not department or not password:
+            return render_template('add_user.html', error="All fields are required.")
+
+        existing = db.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
+        if existing:
+            return render_template('add_user.html', error="A user with that email already exists.")
+
+        hashed = generate_password_hash(password)
+        db.execute('''INSERT INTO users (username, full_name, email, password, role, department)
+        VALUES (?, ?, ?, ?, ?, ?)''', (username, full_name, email, hashed, role, department))
+        db.commit()
+        flash("User created successfully")
+        return redirect(url_for('admin'))
+
+    else:
+        return render_template("add_user.html")    
 
 @app.route("/admin/edit_desk/<int:desk_id>", methods=["GET", "POST"])
 def admin_edit_desk(desk_id):
@@ -470,7 +511,11 @@ def admin_edit_desk(desk_id):
         department = request.form ["department"]
         floor = request.form ["floor"]
 
-        
+        desk = db.execute("SELECT * FROM desks WHERE id=?",
+                          (desk_id,)).fetchone()
+        if not desk_number or not floor: 
+            return render_template ('edit_desk.html', desk=desk, error ="All fields are required")
+                    
         db.execute("UPDATE desks SET desk_number=?, department=?, floor=? WHERE id=?", 
                        (desk_number, department, floor, desk_id)) 
         db.commit()
