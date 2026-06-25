@@ -90,11 +90,21 @@ def seed_db():
             ('A108', 'IT', 'Available', 1),
             ('A109', 'IT', 'Available', 1),
             ('A110', 'IT', 'Available', 1),
-            ('B101', 'HR', 'Available', 2),
-            ('B102', 'HR', 'Available', 2),
-            ('B103', 'HR', 'Available', 2),
-            ('C101', 'Finance', 'Available', 3),
-            ('C102', 'Finance', 'Available', 3),
+            ('B104', 'HR', 'Available', 2),
+            ('B105', 'HR', 'Available', 2),
+            ('B106', 'HR', 'Available', 2),
+            ('B107', 'HR', 'Available', 2),
+            ('B108', 'HR', 'Available', 2),
+            ('B109', 'HR', 'Available', 2),
+            ('B110', 'HR', 'Available', 2),
+            ('C103', 'Finance', 'Available', 3),
+            ('C104', 'Finance', 'Available', 3),
+            ('C105', 'Finance', 'Available', 3),
+            ('C106', 'Finance', 'Available', 3),
+            ('C107', 'Finance', 'Available', 3),
+            ('C108', 'Finance', 'Available', 3),
+            ('C109', 'Finance', 'Available', 3),
+            ('C110', 'Finance', 'Available', 3),
         ]
         for desk in desks:
             cursor.execute('''INSERT INTO desks (desk_number, department, status, floor)
@@ -105,13 +115,21 @@ def seed_db():
 
     if booking_count == 0:
         bookings = [
-            (2, 1, '2026-06-18', 'Morning', 'confirmed'),
-            (3, 2, '2026-06-18', 'Afternoon', 'confirmed'),
-            (4, 3, '2026-06-19', 'Fullday', 'confirmed'),
-            (5, 11, '2026-06-18', 'Morning', 'confirmed'),
-            (6, 12, '2026-06-19', 'Afternoon', 'confirmed'),
-            (8, 14, '2026-06-18', 'Morning', 'confirmed'),
-            (9, 15, '2026-06-19', 'Fullday', 'confirmed'),
+            (2, 1, '2026-06-25', 'Morning', 'confirmed'),
+            (3, 2, '2026-06-25', 'Afternoon', 'confirmed'),
+            (4, 3, '2026-06-26', 'Fullday', 'confirmed'),
+            (2, 4, '2026-06-27', 'Morning', 'confirmed'),
+            (3, 5, '2026-06-30', 'Afternoon', 'confirmed'),
+            (4, 6, '2026-07-01', 'Morning', 'confirmed'),
+            (5, 11, '2026-07-02', 'Fullday', 'confirmed'),
+            (6, 12, '2026-07-03', 'Morning', 'confirmed'),
+            (7, 13, '2026-07-07', 'Afternoon', 'confirmed'),
+            (8, 14, '2026-07-08', 'Morning', 'confirmed'),
+            (9, 15, '2026-07-09', 'Afternoon', 'confirmed'),
+            (10, 16, '2026-07-10', 'Fullday', 'confirmed'),
+            (2, 7, '2026-07-14', 'Morning', 'confirmed'),
+            (3, 8, '2026-07-14', 'Afternoon', 'confirmed'),
+            (4, 9, '2026-07-15', 'Morning', 'confirmed'),
         ]
         for booking in bookings:
             cursor.execute('''INSERT INTO bookings (user_id, desk_id, date, time_slot, status)
